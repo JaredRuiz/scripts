@@ -2,26 +2,32 @@
 
 ###############################
 # backup.sh
-# Backs up inputted file(s) in ~/.backups
+## Backs up inputted file(s) in ~/.backups, 
+#+ or te final argument, if that is a directory
+## Usage:
+#+ backup.sh file1 file2 file3
+#+ backup.sh file1 file2 dir 
 
-
+# timestamp will be displayed on the backup file
 NOW=$(date +"%m-%d-%y-%T");
 LAST_ARG=${!#};
 
 if [ $# -gt 0 ]; then  # if arguments exist
 
-    if [ -d $LAST_ARG ] ; then # if the last argument is a directory
+    if [ -d $LAST_ARG ] ; then # if the last argument is a directory..
+	BACKUP_DIRECTORY=$LAST_ARG; # then make it the backup directory
 	ARG_ARRAY=( $@ );
 	ARRAY_LENGTH=$#;
-	ARGS=${ARG_ARRAY[@]:0:$ARRAY_LENGTH-1};
-	BACKUP_DIRECTORY=$LAST_ARG; # then make it the backup directory
-    else
-	ARGS=( $@ );
+	ARGS=${ARG_ARRAY[@]:0:$ARRAY_LENGTH-1}; # use all but last argument
+
+    else # otherwise store files in designated backup folder
 	BACKUP_DIRECTORY=~/.backups;
+	ARGS=( $@ );
     fi
-    
+
+    # loop through the arguments
     for i in $ARGS; do # loop through arguments
-      cp $i $i\_BAK_$NOW
-      mv $i\_BAK_$NOW $BACKUP_DIRECTORY;
+	cp $i $i\_BAK_$NOW
+	mv $i\_BAK_$NOW $BACKUP_DIRECTORY;
     done
 fi
