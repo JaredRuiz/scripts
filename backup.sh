@@ -4,17 +4,24 @@
 # backup.sh
 # Backs up inputted file(s) in ~/.backups
 
-BACKUP_DIRECTORY=~/.backups;
-NOW=$(date +"%m-%d-%y-%T");
 
-if [ $1 ]; then  # if arguments exist
-    for i # loop through arguments
-    do
+NOW=$(date +"%m-%d-%y-%T");
+LAST_ARG=${!#};
+
+if [ $# -gt 0 ]; then  # if arguments exist
+
+    if [ -d $LAST_ARG ] ; then # if the last argument is a directory
+	ARG_ARRAY=( $@ );
+	ARRAY_LENGTH=$#;
+	ARGS=${ARG_ARRAY[@]:0:$ARRAY_LENGTH-1};
+	BACKUP_DIRECTORY=$LAST_ARG; # then make it the backup directory
+    else
+	ARGS=( $@ );
+	BACKUP_DIRECTORY=~/.backups;
+    fi
+    
+    for i in $ARGS; do # loop through arguments
       cp $i $i\_BAK_$NOW
       mv $i\_BAK_$NOW $BACKUP_DIRECTORY;
     done
 fi
-
-
-##Additional ideas...
-##perhaps check if last argument is a folder, and if so, put the file there
