@@ -10,12 +10,11 @@
 
 # timestamp will be displayed on the backup file
 NOW=$(date +"%m-%d-%y-%T");
-LAST_ARG=${!#};
 
 if [ $# -gt 0 ]; then  # if arguments exist
-
     ARG_ARRAY=( $@ );
     ARRAY_LENGTH=$#;
+    LAST_ARG=${!#};
 
     if [ -d $LAST_ARG ] ; then # if the last argument is a directory..
 	BACKUP_DIRECTORY=$LAST_ARG; # then make it the backup directory
