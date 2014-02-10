@@ -9,4 +9,4 @@
 
 ## TODO: add better color support
 
-ls -F --color=auto $@ | grep \/ --color=auto
+ls -Fa --color=auto $@ | grep \/ --color=auto
