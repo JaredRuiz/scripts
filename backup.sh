@@ -32,3 +32,5 @@ if [ $# -gt 0 ]; then  # if arguments exits
 	      fi
     done
 fi
+
+exit 0
