@@ -1,6 +1,7 @@
-## rename.sh
+#!/bin/bash
 
-## a safer and smarter mv command
+## rename.sh
+## A safer and smarter mv command
 
 if [ $# -eq 2 ]; then 
     
