@@ -18,7 +18,7 @@ CURRENT_DIRECTORY=$(printf '%q/\n' ${PWD} );
 # TODO: THIS IS STILL NOT SAFE!!!!!! IT MAY OVERWRITE A FILE IN THE CURRENT DIRECTORY IF THE NAMES ARE THE SAME!!!!
 
 
-if [ -z $1 ]; then  # if arguments exits
+if [ $# -gt 0 ]; then  # if arguments exits
     echo "Usage: `echo ${0##*/}` path/to/backup/file backup_file"
     echo "OR"
     echo "Usage: `echo ${0##*/}` path/to/backup/file backup_file directory-to-place-new-file(s)"
