@@ -1,12 +1,10 @@
 #!/bin/bash
 
-TEST_STRING="/poop/fart/shit/";
+# TEST_STRING="/poop/fart/shit/";
 
-if grep -q "/$" <<< $TEST_STRING; then
-    
-    
-    
-    echo "its there"
+ARG=$2
 
-    
-fi
+TEST_STRING=$(~/gitrepos/scripts/create-filename-with-directory.sh $1 $ARG)
+# TEST_STRING=$(~/gitrepos/scripts/create-filename-with-directory.sh $1 $2)
+echo $TEST_STRING
+

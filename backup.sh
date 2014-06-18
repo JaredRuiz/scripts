@@ -3,7 +3,7 @@
 ###############################
 # backup.sh
 ## Backs up inputted file(s) in ~/.backups, 
-#+ or te final argument, if that is a directory
+#+ or the final argument, if that is a directory
 ## Usage:
 #+ backup.sh file1 file2 file3
 #+ backup.sh file1 file2 dir 
@@ -25,8 +25,9 @@ if [ $# -gt 0 ]; then  # if arguments exits
     fi
 
     # loop through the arguments
-    for i in $ARGS; do # loop through arguments
-	      if [ -f $i ]; then # if file is not a directory or anything special
+    for i in $ARGS; do 
+        # if file is not a directory or anything special
+	      if [ -f $i ]; then 
 	          cp $i $i\_BAK_$NOW
 	          mv $i\_BAK_$NOW $BACKUP_DIRECTORY;
 	      fi

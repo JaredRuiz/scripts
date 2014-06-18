@@ -5,6 +5,7 @@ alias lf='~/gitrepos/scripts/list-folder.sh'
 alias l='ls -l'
 alias la='ls -a'
 alias bu='~/gitrepos/scripts/backup.sh'
+alias scp='~/gitrepos/scripts/copy.sh'
 
 ## git shortcuts
 alias gb='git branch'
