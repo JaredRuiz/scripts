@@ -48,32 +48,10 @@ for i in $ARGS; do
         # strip off "_BAK_" and the time signature (ie. the file has the name it began with)
         NEW_FILE_NAME=$(echo $TEMP_FILE_NAME | sed s/"\_BAK\_[A-Za-z0-9:-]\{1,\}"//);
 
-        # if grep -q "/$" <<< $PASTE_DIRECTORY; 
-        # then
-        #     # don't add an extra "/" if PASTE_DIRECTORY already ends with one
-        #     FINAL_FILE_NAME=$PASTE_DIRECTORY$NEW_FILE_NAME;
-        # else
-        #     FINAL_FILE_NAME=$PASTE_DIRECTORY/$NEW_FILE_NAME;
-        # fi
-        
-        echo $PASTE_DIRECTORY
-        if [ -d $PASTE_DIRECTORY ]; then
-            echo "pppppppooooooooooooooooppppppppppppp"
-        fi
-
-        FINAL_FILE_NAME=$(~/gitrepos/scripts/create-filename-with-directory.sh $NEW_FILE_NAME $PASTE_DIRECTORY);
-        echo "final file name is `echo $FINAL_FILE_NAME`"
-        ~/gitrepos/scripts/copy.sh $i $FINAL_FILE_NAME
-
-        # if the "inverted" file already exists, don't overwrite it!!
-        # if [ -e $FINAL_FILE_NAME ]; then
-        #     echo "error: $NEW_FILE_NAME already exists in the directory $PASTE_DIRECTORY"
-        #     exit $E_FILE_ALREADY_EXISTS_ERR
-        # else
-        #     # backup the file, just in case something goes wrong
-        #     ~/gitrepos/scripts/backup.sh $NEW_FILE_NAME
-        #     cp 
-        # fi
+        source utility-functions.sh
+        FINAL_FILE_NAME=$(combine-string-and-directory $NEW_FILE_NAME $PASTE_DIRECTORY)
+        # don't use safe-copy, since there's no need to backup a backup
+        cp $i $FINAL_FILE_NAME
     fi
 done
 

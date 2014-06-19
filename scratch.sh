@@ -1,10 +1,12 @@
 #!/bin/bash
 
-# TEST_STRING="/poop/fart/shit/";
 
-ARG=$2
+ARG1=$1
+ARG2=$2
 
-TEST_STRING=$(~/gitrepos/scripts/create-filename-with-directory.sh $1 $ARG)
-# TEST_STRING=$(~/gitrepos/scripts/create-filename-with-directory.sh $1 $2)
-echo $TEST_STRING
+source utility-functions.sh
+
+NEW_FILE=$(combine-filename-and-directory $ARG1 $ARG2)
+
+echo $NEW_FILE
 
