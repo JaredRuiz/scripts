@@ -26,3 +26,13 @@ function combine-string-and-directory() {
         exit $E_NO_FILE_ERR
     fi
 }
+
+# capitalizes first letter of a bunch of words
+function capitalize-first-letter-only() {
+    echo $1 | tr [A-z] [a-z] | sed 's/^./\U&/g' | sed 's/[[:space:]]./\U&/g'
+}
+
+
+function surround-text-in-quotes() {
+    sed -e "s/\(.*\)/'\1'/"
+}
