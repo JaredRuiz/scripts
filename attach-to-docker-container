@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ -f ~/myupmc-docker.log  ]
+then
+  rm ~/myupmc-docker.log
+fi
+
+DOCKER_TEMP_ID=`docker ps -f name=web-classic -q`
+docker attach $DOCKER_TEMP_ID > ~/myupmc-docker.log 2>&1 &
+
+exit 0
